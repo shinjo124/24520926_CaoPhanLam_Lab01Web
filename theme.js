@@ -15,15 +15,18 @@
   root.dataset.theme = theme;
 
   document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.querySelector('header button[aria-pressed]');
+    const toggle = document.querySelector("#theme-btn");
+    const icon = document.querySelector("#theme-icon");
     if (!toggle) return;
 
     toggle.setAttribute("aria-pressed", String(theme === "dark"));
+    if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
 
     toggle.addEventListener("click", () => {
       theme = theme === "dark" ? "light" : "dark";
       root.dataset.theme = theme;
       toggle.setAttribute("aria-pressed", String(theme === "dark"));
+      if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
 
       try {
         window.localStorage.setItem("theme", theme);
