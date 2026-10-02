@@ -23,12 +23,95 @@
     </nav>
 
     <main id="main-content">
+      <section id="hero" aria-labelledby="hero-heading">
+        <img
+          src="assets/portrait.webp"
+          alt="Portrait of the portfolio owner"
+          width="400"
+          height="400"
+        >
+        <h2 id="hero-heading">I build thoughtful web experiences.</h2>
+        <p>I turn ideas into accessible, responsive websites with clean, dependable code.</p>
+      </section>
+
       <section id="about" aria-labelledby="about-heading">
         <h2 id="about-heading">About</h2>
       </section>
 
+      <section id="skills" class="skills-matrix" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+
+        <section class="skill-category" aria-labelledby="frontend-skills-heading">
+          <h3 id="frontend-skills-heading">Frontend</h3>
+          <ul class="skill-badges">
+            <li><span class="skill-badge">HTML</span></li>
+            <li><span class="skill-badge">CSS</span></li>
+            <li><span class="skill-badge">JavaScript</span></li>
+          </ul>
+        </section>
+
+        <section class="skill-category" aria-labelledby="tools-skills-heading">
+          <h3 id="tools-skills-heading">Tools</h3>
+          <ul class="skill-badges">
+            <li><span class="skill-badge">Git</span></li>
+            <li><span class="skill-badge">Browser DevTools</span></li>
+          </ul>
+        </section>
+
+        <section class="skill-category" aria-labelledby="accessibility-skills-heading">
+          <h3 id="accessibility-skills-heading">Accessibility</h3>
+          <ul class="skill-badges">
+            <li><span class="skill-badge">Semantic HTML</span></li>
+            <li><span class="skill-badge">Keyboard Navigation</span></li>
+          </ul>
+        </section>
+      </section>
+
       <section id="projects" aria-labelledby="projects-heading">
         <h2 id="projects-heading">Projects</h2>
+        <article class="project-card" aria-labelledby="portfolio-project-heading">
+          <h3 id="portfolio-project-heading">Developer Portfolio</h3>
+          <ul class="project-tags" aria-label="Technologies used">
+            <li><span>HTML</span></li>
+            <li><span>CSS</span></li>
+            <li><span>JavaScript</span></li>
+          </ul>
+          <p>A responsive portfolio showcasing accessible web design and frontend development.</p>
+          <a href="https://github.com/your-username/portfolio-website">
+            View the Developer Portfolio source code
+          </a>
+        </article>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact</h2>
+        <form action="#contact" method="post">
+          <p>
+            <label for="contact-name">Name</label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              required
+              minlength="2"
+              aria-describedby="contact-name-hint"
+            >
+            <span id="contact-name-hint">Enter at least 2 characters.</span>
+          </p>
+          <p>
+            <label for="contact-email">Email address</label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              required
+              minlength="6"
+              aria-describedby="contact-email-hint"
+            >
+            <span id="contact-email-hint">Enter a valid email address.</span>
+          </p>
+          <button type="submit">Send message</button>
+        </form>
       </section>
     </main>
 
