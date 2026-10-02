@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portfolio</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="projects.js" defer></script>
   </head>
   <body>
     <a href="#main-content">Skip to main content</a>
@@ -15,7 +18,7 @@
       </button>
     </header>
 
-    <nav aria-label="Primary navigation">
+    <nav class="navbar" aria-label="Primary navigation">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -69,18 +72,8 @@
 
       <section id="projects" aria-labelledby="projects-heading">
         <h2 id="projects-heading">Projects</h2>
-        <article class="project-card" aria-labelledby="portfolio-project-heading">
-          <h3 id="portfolio-project-heading">Developer Portfolio</h3>
-          <ul class="project-tags" aria-label="Technologies used">
-            <li><span>HTML</span></li>
-            <li><span>CSS</span></li>
-            <li><span>JavaScript</span></li>
-          </ul>
-          <p>A responsive portfolio showcasing accessible web design and frontend development.</p>
-          <a href="https://github.com/your-username/portfolio-website">
-            View the Developer Portfolio source code
-          </a>
-        </article>
+        <p id="project-status" class="project-status" role="status" aria-live="polite" tabindex="-1"></p>
+        <ul id="project-list" class="project-grid" aria-label="Projects"></ul>
       </section>
 
       <section id="contact" aria-labelledby="contact-heading">

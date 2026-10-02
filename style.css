@@ -28,6 +28,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.5rem;
+  list-style: none;
 }
 
 .project-card {
@@ -36,6 +37,30 @@ body {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 0.5rem;
+}
+
+.project-card p {
+  margin-block: 1rem;
+}
+
+.project-card a {
+  color: var(--accent);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block: 1rem;
+  list-style: none;
+}
+
+.project-tags span {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 999px;
 }
 
 .project-skeleton {
