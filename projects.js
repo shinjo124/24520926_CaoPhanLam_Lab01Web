@@ -67,9 +67,23 @@
     }
   }
 
+  function showEmpty() {
+    projectList.replaceChildren();
+
+    const message = document.createElement("span");
+    const hint = document.createElement("span");
+    message.textContent = "No projects to display yet.";
+    hint.textContent = "Check back later for new work.";
+    projectStatus.replaceChildren(message, document.createTextNode(" "), hint);
+  }
+
   async function loadProjects() {
     showLoading();
     await new Promise((resolve) => window.setTimeout(resolve, 300));
+    if (mockProjects.length === 0) {
+      showEmpty();
+      return;
+    }
     projectList.replaceChildren(...mockProjects.map(renderProject));
     projectStatus.textContent = `${mockProjects.length} projects loaded.`;
   }
