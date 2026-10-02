@@ -135,4 +135,27 @@
   }
 
   loadProjects();
+
+  const form = document.querySelector("#contact form");
+  const submitButton = form?.querySelector('button[type="submit"]');
+  const formStatus = document.querySelector("#contact-status");
+
+  if (!form || !submitButton || !formStatus) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submitButton.disabled = true;
+    formStatus.textContent = "Sending your message.";
+
+    window.setTimeout(() => {
+      try {
+        formStatus.textContent = "Thanks, Lâm will reply soon.";
+        form.reset();
+      } catch {
+        formStatus.textContent = "Something went wrong. Please try again.";
+      } finally {
+        submitButton.disabled = false;
+      }
+    }, 500);
+  });
 })();
