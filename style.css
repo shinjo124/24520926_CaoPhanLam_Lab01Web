@@ -13,6 +13,31 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+.navbar,
+.navbar ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar ul {
+  list-style: none;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  padding: 1.5rem;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
 :root {
   color-scheme: light;
   --bg: #f8fafc;
