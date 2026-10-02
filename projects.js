@@ -4,22 +4,38 @@
 
   if (!projectList || !projectStatus) return;
 
-  const mockProjects = [
+  const projects = [
     {
       title: "Developer Portfolio",
-      tags: ["HTML", "CSS", "JavaScript"],
-      description:
-        "A responsive portfolio showcasing accessible web design and frontend development.",
-      href: "https://github.com/your-username/portfolio-website",
-      linkText: "View the Developer Portfolio source code",
+      tags: ["HTML", "CSS", "JS"],
+      description: "Responsive portfolio with a dark mode engine and zero layout shift.",
+      href: "#",
+      linkText: "Source Code",
+      hiddenSuffix: " for Portfolio",
     },
     {
-      title: "Responsive Project Gallery",
-      tags: ["CSS Grid", "Accessibility"],
-      description:
-        "A flexible project gallery designed to adapt from mobile screens to desktop layouts.",
-      href: "https://github.com/your-username/project-gallery",
-      linkText: "View the Responsive Project Gallery source code",
+      title: "Web Drum Kit",
+      tags: ["JavaScript", "Audio"],
+      description: "Keyboard drum pads with polyphonic playback and a beat recorder.",
+      href: "#",
+      linkText: "Source Code",
+      hiddenSuffix: " for Drum Kit",
+    },
+    {
+      title: "Countdown Event Page",
+      tags: ["JavaScript", "Forms"],
+      description: "Drift-free countdown with a validated registration form.",
+      href: "#",
+      linkText: "Source Code",
+      hiddenSuffix: " for Event Page",
+    },
+    {
+      title: "Student Grade Table",
+      tags: ["HTML", "CSS"],
+      description: "Accessible data table with caption, scoped headers and responsive scroll.",
+      href: "#",
+      linkText: "Source Code",
+      hiddenSuffix: " for Grade Table",
     },
   ];
 
@@ -50,13 +66,18 @@
     description.textContent = project.description;
     link.href = project.href;
     link.textContent = project.linkText;
+    const hiddenSuffix = document.createElement("span");
+    hiddenSuffix.className = "visually-hidden";
+    hiddenSuffix.textContent = project.hiddenSuffix;
+    link.append(hiddenSuffix);
     card.append(heading, tags, description, link);
     listItem.append(card);
     return listItem;
   }
 
   function showLoading() {
-    projectStatus.textContent = "Loading projects.";
+    projectStatus.replaceChildren();
+    projectStatus.removeAttribute("tabindex");
     projectList.replaceChildren();
 
     for (let index = 0; index < 3; index += 1) {
@@ -69,23 +90,48 @@
 
   function showEmpty() {
     projectList.replaceChildren();
+    projectStatus.setAttribute("tabindex", "-1");
 
     const message = document.createElement("span");
     const hint = document.createElement("span");
-    message.textContent = "No projects to display yet.";
-    hint.textContent = "Check back later for new work.";
+    message.textContent = "No projects to show yet.";
+    hint.textContent = "Check back soon.";
     projectStatus.replaceChildren(message, document.createTextNode(" "), hint);
+  }
+
+  function showError() {
+    projectList.replaceChildren();
+    projectStatus.setAttribute("tabindex", "-1");
+
+    const message = document.createElement("span");
+    const retry = document.createElement("button");
+    message.textContent = "Something went wrong while loading projects.";
+    message.tabIndex = -1;
+    retry.type = "button";
+    retry.textContent = "Try again";
+    retry.addEventListener("click", loadProjects);
+    projectStatus.replaceChildren(message, document.createTextNode(" "), retry);
+    message.focus();
+  }
+
+  async function fetchProjects() {
+    await new Promise((resolve) => window.setTimeout(resolve, 300));
+    return projects;
   }
 
   async function loadProjects() {
     showLoading();
-    await new Promise((resolve) => window.setTimeout(resolve, 300));
-    if (mockProjects.length === 0) {
-      showEmpty();
-      return;
+    try {
+      const loadedProjects = await fetchProjects();
+      if (loadedProjects.length === 0) {
+        showEmpty();
+        return;
+      }
+      projectList.replaceChildren(...loadedProjects.map(renderProject));
+      projectStatus.replaceChildren();
+    } catch {
+      showError();
     }
-    projectList.replaceChildren(...mockProjects.map(renderProject));
-    projectStatus.textContent = `${mockProjects.length} projects loaded.`;
   }
 
   loadProjects();
